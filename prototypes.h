@@ -1,3 +1,4 @@
+void menu();
 Tree* initTree();
 void freeTree(Tree *tree);
 Pessoa* createPessoa(int id, char* cpf, char* name, char* lastName);
@@ -16,3 +17,4 @@ void addFriend(Tree *tree, int id, int idToAdd);
 void showFriends(Tree *tree, int id);
 void showFriendsOfFriends(Tree *tree, int id);
 void printPessoa(Pessoa *pessoa);
+Pessoa* searchPessoa(Node *node, int id);

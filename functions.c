@@ -164,7 +164,7 @@ void addFriend(Tree *tree, int id, int idToAdd) {
 void showFriends(Tree *tree, int id) {
     printf("\n\n--- Friends of ID %i ---", id);
     for (int i = 0; i < MAX_USERS; i++) {
-        if (tree->friends[id][i] == 1) printf("\nID %i", i);
+        if (tree->friends[id][i] == 1) printPessoa(searchPessoa(tree->root, i));
     }
 }
 
@@ -181,4 +181,12 @@ void printPessoa(Pessoa *pessoa) {
         pessoa->CPF,
         pessoa->nome, 
         pessoa->sobrenome);
+}
+
+Pessoa* searchPessoa(Node *node, int id) {
+    if (!node) return NULL;
+
+    if (id == node->person->id) return node->person;
+    if (id < node->person->id) return searchPessoa(node->left, id);
+    if (id > node->person->id) return searchPessoa(node->right, id);
 }
