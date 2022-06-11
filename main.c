@@ -15,13 +15,15 @@ int main() {
         tree->count++;
     }
 
-    printInOrder(tree->root);
-
     if (insertNode(&tree->root, createPessoa(tree->count, "444", "USER 4", "TEST 4"))) {
         tree->count++;
     }
 
-    if (insertNode(&tree->root, createPessoa(tree->count, "555", "USER 5", "TEST 5"))) {
-        tree->count++;
-    }
+    addFriend(tree, 0, 1);
+    addFriend(tree, 0, 2);
+    addFriend(tree, 2, 3);
+
+    printInOrder(tree->root);
+    showFriends(tree, 0);
+    showFriendsOfFriends(tree, 0);
 }

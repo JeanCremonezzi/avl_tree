@@ -150,12 +150,35 @@ Node* insertNode(Node **root, Pessoa *pessoa) {
 void printInOrder(Node *node) {
     if (!node) return;
     printInOrder(node->left);
-
-    printf("\n%i - %s | %s %s", // ID - CPF | NOME SOBRENOME
-        node->person->id, 
-        node->person->CPF,
-        node->person->nome, 
-        node->person->sobrenome);
-
+    printPessoa(node->person);
     printInOrder(node->right);
+}
+
+void addFriend(Tree *tree, int id, int idToAdd) {
+    if (id == idToAdd) return;
+
+    tree->friends[id][idToAdd] = 1;
+    tree->friends[idToAdd][id] = 1;
+}
+
+void showFriends(Tree *tree, int id) {
+    printf("\n\n--- Friends of ID %i ---", id);
+    for (int i = 0; i < MAX_USERS; i++) {
+        if (tree->friends[id][i] == 1) printf("\nID %i", i);
+    }
+}
+
+void showFriendsOfFriends(Tree *tree, int id) {
+    printf("\n\n====== Friends of friends ======");
+    for (int i = 0; i < MAX_USERS; i++) {
+        if (tree->friends[id][i] == 1) showFriends(tree, i);
+    }
+}
+
+void printPessoa(Pessoa *pessoa) {
+    printf("\n%i - %s | %s %s", // ID - CPF | NOME SOBRENOME
+        pessoa->id, 
+        pessoa->CPF,
+        pessoa->nome, 
+        pessoa->sobrenome);
 }
